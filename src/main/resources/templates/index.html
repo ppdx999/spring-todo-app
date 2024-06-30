@@ -9,10 +9,72 @@
 <body>
     <div class="container">
         <h1>Todo List</h1>
-        <div th:each="todo : ${todos}" class="todo-item">
-            <span th:text="${todo.title}" class="todo-title"></span>
-            <span th:text="${todo.completed ? '✔️' : '❌'}" class="todo-completed"></span>
+        
+        <!-- Form for adding new Todo -->
+        <form id="todo-form">
+            <input type="text" id="new-todo-title" placeholder="New Todo" required>
+            <button type="submit">Add Todo</button>
+        </form>
+
+        <!-- Todo List -->
+        <div id="todo-list">
+            <div th:each="todo : ${todos}" class="todo-item" th:data-id="${todo.id}">
+                <span th:text="${todo.title}" class="todo-title"></span>
+                <span th:text="${todo.completed ? '✔️' : '❌'}" class="todo-completed"></span>
+                <button onclick="toggleTodoCompletion(this)">Toggle Completion</button>
+                <button onclick="deleteTodoItem(this)">Delete</button>
+            </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('todo-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const title = document.getElementById('new-todo-title').value;
+            if (title) {
+                const response = await fetch('/api/todos', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ title: title, completed: false })
+                });
+                if (response.ok) {
+                    location.reload();
+                }
+            }
+        });
+
+        async function toggleTodoCompletion(button) {
+            const todoItem = button.closest('.todo-item');
+            const todoId = todoItem.getAttribute('data-id');
+            const title = todoItem.querySelector('.todo-title').innerText;
+            const completed = todoItem.querySelector('.todo-completed').innerText === '✔️';
+            const response = await fetch(`/api/todos/${todoId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    title: title,
+                    completed: !completed
+                })
+            });
+            if (response.ok) {
+                location.reload();
+            }
+        }
+
+        async function deleteTodoItem(button) {
+            const todoItem = button.closest('.todo-item');
+            const todoId = todoItem.getAttribute('data-id');
+            const response = await fetch(`/api/todos/${todoId}`, {
+                method: 'DELETE'
+            });
+            if (response.ok) {
+                location.reload();
+            }
+        }
+    </script>
 </body>
 </html>
