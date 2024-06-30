@@ -18,6 +18,10 @@ public class TodoApiController {
     @Autowired
     private TodoService todoService;
 
+    public TodoApiController(TodoService todoService) {
+        this.todoService = todoService;
+    }
+
     @GetMapping
     public List<Todo> getAllTodos() {
         return todoService.findAll();
