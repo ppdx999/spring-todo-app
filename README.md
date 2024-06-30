@@ -2,6 +2,8 @@
 
 This is a simple Todo application built with Spring Boot, PostgreSQL, and Lombok. It provides basic CRUD functionality for managing Todo items.
 
+![Todo app's top page image](/assets/demo-top.png)
+
 ## Features
 
 - Create new Todo items
