@@ -32,7 +32,7 @@ public class TodoService {
         try {
             todoRepository.deleteById(id);
         } catch (EmptyResultDataAccessException e) {
-            throw new TodoNotFoundException(id);
+            throw new TodoNotFoundException(id, e);
         }
     }
 
