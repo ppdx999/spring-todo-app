@@ -2,6 +2,8 @@ package com.example.demo.controller.api;
 
 import com.example.demo.model.Todo;
 import com.example.demo.service.TodoService;
+import com.example.demo.service.exception.TodoNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,24 +37,20 @@ public class TodoApiController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Todo> updateTodo(@PathVariable Long id, @RequestBody Todo todoDetails) {
-        Optional<Todo> todo = todoService.findById(id);
-        if (todo.isPresent()) {
-            Todo updatedTodo = todo.get();
-            updatedTodo.setTitle(todoDetails.getTitle());
-            updatedTodo.setCompleted(todoDetails.isCompleted());
-            todoService.save(updatedTodo);
+        try {
+            Todo updatedTodo = todoService.update(id, todoDetails);
             return ResponseEntity.ok(updatedTodo);
-        } else {
+        } catch (TodoNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTodo(@PathVariable Long id) {
-        if (todoService.findById(id).isPresent()) {
+        try {
             todoService.deleteById(id);
             return ResponseEntity.noContent().build();
-        } else {
+        } catch (TodoNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
     }

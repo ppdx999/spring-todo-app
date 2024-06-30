@@ -2,7 +2,9 @@ package com.example.demo.service;
 
 import com.example.demo.model.Todo;
 import com.example.demo.repository.TodoRepository;
+import com.example.demo.service.exception.TodoNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,6 +29,19 @@ public class TodoService {
     }
 
     public void deleteById(Long id) {
-        todoRepository.deleteById(id);
+        try {
+            todoRepository.deleteById(id);
+        } catch (EmptyResultDataAccessException e) {
+            throw new TodoNotFoundException(id);
+        }
+    }
+
+    public Todo update(Long id, Todo newTodoData) {
+        Todo todo = todoRepository.findById(id).orElseThrow(() -> new TodoNotFoundException(id));
+
+        todo.setTitle(newTodoData.getTitle());
+        todo.setCompleted(newTodoData.isCompleted());
+
+        return todoRepository.save(todo);
     }
 }
