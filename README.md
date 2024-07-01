@@ -65,6 +65,12 @@ Go to `http://localhost:8080/swagger-ui` and you will found this swagger ui
 
 ![Swagger's image](/assets/demo-swagger.png)
 
+To get openapi's yaml spec file, run the command
+
+```sh
+curl localhost:8080/api-docs.yaml
+```
+
 
 ## Contributing
 
