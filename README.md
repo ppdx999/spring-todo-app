@@ -59,6 +59,13 @@ spring.jpa.show-sql=true
 
 The application should now be running at `http://localhost:8080`.
 
+## API Endpoints
+
+Go to `http://localhost:8080/swagger-ui` and you will found this swagger ui
+
+![Swagger's image](/assets/demo-swagger.png)
+
+
 ## Contributing
 
 Contributions are welcome! Please create a pull request or submit an issue if you find any bugs or have suggestions for improvements.
