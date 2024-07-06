@@ -4,12 +4,19 @@ This is a simple Todo application built with Spring Boot, PostgreSQL, and Lombok
 
 ![Todo app's top page image](/assets/demo-top.png)
 
+## Features
+- Built on Spring Framework
+- Support Swagger UI
+- Boosted by Tailwind
+
 ## Prerequisites
 
 - Java 17 or later
 - PostgreSQL database
 - Gradle
 - A text editor or IDE of your choice
+- Node.js
+- npm
 
 ## Setup
 
@@ -43,7 +50,13 @@ spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
 ```
 
-### Step 3: Build and Run the Application
+### Step 3: Build Tailwind CSS
+
+```bash
+npm run build:css
+```
+
+### Step 4: Build and Run the Application
 
 1. Navigate to the project directory and build the application.
 

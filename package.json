@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "build:css": "tailwindcss build -i src/main/resources/static/css/tailwind.css -o src/main/resources/static/css/styles.css",
+    "start": "npm run build:css && ./gradlew bootRun"
+  },
+  "dependencies": {
+    "tailwindcss": "^3.4.4"
+  }
+}
