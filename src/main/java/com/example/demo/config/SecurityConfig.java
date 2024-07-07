@@ -21,9 +21,14 @@ public class SecurityConfig {
             )
             .formLogin(formLogin -> formLogin
                 .loginPage("/auth/login")
+                .loginProcessingUrl("/auth/login")
+                .failureUrl("/auth/login?error=true")
+                .defaultSuccessUrl("/todos", true)
                 .permitAll()
             )
             .logout(logout -> logout
+                .permitAll()
+                .logoutSuccessUrl("/auth/login")
                 .permitAll()
             );
 
