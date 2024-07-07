@@ -8,6 +8,6 @@ public class RootWebController {
 
     @GetMapping("/")
     public String redirectToTodos() {
-        return "redirect:/todos";
+        return "index";
     }
 }

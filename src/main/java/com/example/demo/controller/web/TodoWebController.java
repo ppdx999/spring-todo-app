@@ -21,6 +21,6 @@ public class TodoWebController {
     public String getAllTodos(Model model) {
         List<Todo> todos = todoService.findAll();
         model.addAttribute("todos", todos);
-        return "index";
+        return "todos/index";
     }
 }
