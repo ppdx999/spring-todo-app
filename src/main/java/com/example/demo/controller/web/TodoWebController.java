@@ -21,7 +21,7 @@ public class TodoWebController {
 
     @GetMapping
     public String index(@AuthenticationPrincipal User user, Model model) {
-        List<Todo> todos = todoService.findAll();
+        List<Todo> todos = todoService.findAllByOwner(user);
         model.addAttribute("todos", todos);
         model.addAttribute("username", user.getUsername());
         return "todos/index";

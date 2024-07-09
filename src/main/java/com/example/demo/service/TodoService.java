@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.model.Todo;
+import com.example.demo.model.User;
 import com.example.demo.repository.TodoRepository;
 import com.example.demo.service.exception.TodoNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,10 @@ public class TodoService {
 
     public List<Todo> findAll() {
         return todoRepository.findAll();
+    }
+
+    public List<Todo> findAllByOwner(User owner) {
+        return todoRepository.findByOwner(owner);
     }
 
     public Optional<Todo> findById(Long id) {
