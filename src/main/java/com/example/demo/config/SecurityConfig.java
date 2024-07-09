@@ -42,7 +42,7 @@ public class SecurityConfig {
             );
 
         // H2 console access configuration
-        http.headers(headers -> headers.frameOptions().sameOrigin());
+        http.headers(headers -> headers.frameOptions(frameOptions -> frameOptions.sameOrigin()));
         http.csrf(csrf -> csrf.disable());
 
         return http.build();
