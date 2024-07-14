@@ -56,7 +56,22 @@ spring.jpa.show-sql=true
 npm run build:css
 ```
 
-### Step 4: Build and Run the Application
+### Step 4: Generate RSA Public & Private Keys
+
+```
+cd src/main/resources/certs
+
+# create rsa key pair
+openssl genrsa -out keypair.pem 2048
+
+# extract public key
+openssl rsa -in keypair.pem -pubout -out public.pem
+
+# create private key in PKCS#8 format
+openssl pkcs8 -topk8 -inform PEM -outform PEM -nocrypt -in keypair.pem -out private.pem
+```
+
+### Step 5: Build and Run the Application
 
 1. Navigate to the project directory and build the application.
 

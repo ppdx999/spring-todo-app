@@ -5,10 +5,13 @@ import java.util.Arrays;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 import com.example.demo.command.CommandManager;
+import com.example.demo.config.RsaKeyProperties;
 
 @SpringBootApplication
+@EnableConfigurationProperties(RsaKeyProperties.class)
 public class DemoApplication {
 	public static void main(String[] args) throws Exception {
 		if (args.length > 0 && "cmd".equals(args[0])) {
