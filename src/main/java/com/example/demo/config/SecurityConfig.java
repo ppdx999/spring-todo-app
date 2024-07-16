@@ -7,8 +7,6 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
@@ -17,8 +15,6 @@ import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.example.demo.model.User;
-import com.example.demo.repository.UserRepository;
 import com.nimbusds.jose.jwk.JWK;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
@@ -31,7 +27,7 @@ import com.nimbusds.jose.proc.SecurityContext;
 public class SecurityConfig {
 
     @Autowired
-    private UserRepository userRepository;
+    private CustomUserDetailsService userDetailsService;
 
     @Autowired
     private RsaKeyProperties rsaKeys;
@@ -42,7 +38,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/", "/css/**", "/js/**", "/images/**", "/webjars/**", "/h2-console/**",
-                                "/register")
+                                "/api/auth/token")
                         .permitAll()
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
@@ -57,17 +53,6 @@ public class SecurityConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public UserDetailsService userDetailsService() {
-        return username -> {
-            User user = userRepository.findByUsername(username);
-            if (user == null) {
-                throw new UsernameNotFoundException("User not found");
-            }
-            return user;
-        };
     }
 
     @Bean
