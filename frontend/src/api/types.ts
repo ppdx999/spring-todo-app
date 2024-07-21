@@ -126,6 +126,9 @@ export interface components {
             accountNonLocked?: boolean;
             credentialsNonExpired?: boolean;
         };
+        TokenResponse: {
+            token?: string;
+        };
     };
     responses: never;
     parameters: never;
@@ -374,7 +377,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": string;
+                    "application/json": components["schemas"]["TokenResponse"];
                 };
             };
         };

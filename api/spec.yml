@@ -193,7 +193,7 @@ paths:
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/TokenResponse'
   /api/auth/check:
     get:
       tags:
@@ -249,3 +249,8 @@ components:
           type: boolean
         credentialsNonExpired:
           type: boolean
+    TokenResponse:
+      type: object
+      properties:
+        token:
+          type: string
