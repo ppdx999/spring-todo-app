@@ -102,6 +102,11 @@ To get openapi's yaml spec file, run the command
 curl localhost:8080/api-docs.yaml
 ```
 
+To Donwload the latest spec file, run the command
+
+```sh
+curl localhost:8080/api-docs | yq -P > api/spec.yml
+```
 
 ## Contributing
 
