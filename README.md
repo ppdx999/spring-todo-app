@@ -1,22 +1,23 @@
 # Todo Application
 
-This is a simple Todo application built with Spring Boot, PostgreSQL, and Lombok. It provides basic CRUD functionality for managing Todo items.
+This is a simple Todo application built with Spring Boot, PostgreSQL, and React. It provides basic CRUD functionality for managing Todo items.
 
 ![Todo app's top page image](/assets/demo-top.png)
 
-## Features
-- Built on Spring Framework
-- Support Swagger UI
-- Boosted by Tailwind
-
 ## Prerequisites
 
+Backend
 - Java 17 or later
 - PostgreSQL database
 - Gradle
-- A text editor or IDE of your choice
+
+Frontend
 - Node.js
-- npm
+- pnpm
+
+ReveseProxy(For development)
+- Golang
+
 
 ## Setup
 
@@ -40,7 +41,7 @@ GRANT ALL PRIVILEGES ON DATABASE todo_db TO todo_user;
 2. Update the `application.properties` file with your database credentials.
 
 ```properties
-# src/main/resources/application.properties
+# backend/src/main/resources/application.properties
 spring.application.name=demo
 spring.datasource.url=jdbc:postgresql://localhost:5432/todo_db
 spring.datasource.username=todo_user
@@ -50,16 +51,10 @@ spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
 ```
 
-### Step 3: Build Tailwind CSS
-
-```bash
-npm run build:css
-```
-
-### Step 4: Generate RSA Public & Private Keys
+### Step 3: Generate RSA Public & Private Keys
 
 ```
-cd src/main/resources/certs
+cd backend/src/main/resources/certs
 
 # create rsa key pair
 openssl genrsa -out keypair.pem 2048
@@ -71,21 +66,29 @@ openssl rsa -in keypair.pem -pubout -out public.pem
 openssl pkcs8 -topk8 -inform PEM -outform PEM -nocrypt -in keypair.pem -out private.pem
 ```
 
-### Step 5: Build and Run the Application
+### Step 4: Run Applications
 
-1. Navigate to the project directory and build the application.
+1. backend
 
-```bash
-./gradlew clean build
 ```
-
-2. Run the application.
-
-```bash
+cd backend
 ./gradlew bootRun
 ```
 
-The application should now be running at `http://localhost:8080`.
+2. frontend
+
+```
+cd frontend
+pnpm i
+pnpm run dev
+```
+
+3. revese proxy
+
+```
+cd proxy
+go run main.go
+```
 
 ## API Endpoints
 
