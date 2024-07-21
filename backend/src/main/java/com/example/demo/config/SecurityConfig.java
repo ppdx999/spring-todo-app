@@ -37,9 +37,7 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/", "/css/**", "/js/**", "/images/**", "/webjars/**", "/h2-console/**",
-                                "/api/auth/token")
-                        .permitAll()
+                        .requestMatchers("/", "/css/**", "/js/**", "/images/**", "/webjars/**", "/h2-console/**", "/swagger-ui.html", "/api-docs/**", "/api/auth/token").permitAll()
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session -> session
