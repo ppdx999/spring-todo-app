@@ -22,7 +22,7 @@ paths:
         "200":
           description: OK
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/User'
     put:
@@ -46,7 +46,7 @@ paths:
         "200":
           description: OK
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/User'
     delete:
@@ -79,7 +79,7 @@ paths:
         "200":
           description: OK
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/Todo'
     put:
@@ -103,7 +103,7 @@ paths:
         "200":
           description: OK
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/Todo'
     delete:
@@ -129,7 +129,7 @@ paths:
         "200":
           description: OK
           content:
-            '*/*':
+            application/json:
               schema:
                 type: array
                 items:
@@ -148,7 +148,7 @@ paths:
         "200":
           description: OK
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/User'
   /api/todos:
@@ -160,7 +160,7 @@ paths:
         "200":
           description: OK
           content:
-            '*/*':
+            application/json:
               schema:
                 type: array
                 items:
@@ -179,7 +179,7 @@ paths:
         "200":
           description: OK
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/Todo'
   /api/auth/token:
@@ -191,7 +191,7 @@ paths:
         "200":
           description: OK
           content:
-            '*/*':
+            application/json:
               schema:
                 type: string
   /api/auth/check:
