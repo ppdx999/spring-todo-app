@@ -12,10 +12,23 @@ function App() {
               headers: {
                 Authorization: 'Basic ' + btoa('fujis:password'),
               }
-            }).then((res) => console.log(res))
+            }).then(res => {
+              const token = res.data?.token
+              if (!token) {
+                console.warn('No token found in response')
+              }
+
+              return api.GET('/api/todos', {
+                headers: {
+                  Authorization: `Bearer ${token}`
+                }
+              })
+            }).then(res => {
+              console.log(res.data)
+            })
           }
         >
-          login
+          Run API request
         </button>
       </div>
     </>
