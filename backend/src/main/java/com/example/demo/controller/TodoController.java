@@ -1,4 +1,4 @@
-package com.example.demo.controller.api;
+package com.example.demo.controller;
 
 import com.example.demo.model.Todo;
 import com.example.demo.service.TodoService;
@@ -13,12 +13,12 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/todos")
-public class TodoApiController {
+public class TodoController {
 
     @Autowired
     private TodoService todoService;
 
-    public TodoApiController(TodoService todoService) {
+    public TodoController(TodoService todoService) {
         this.todoService = todoService;
     }
 

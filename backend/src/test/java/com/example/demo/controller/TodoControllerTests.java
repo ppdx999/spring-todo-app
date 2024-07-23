@@ -1,4 +1,4 @@
-package com.example.demo.controller.api;
+package com.example.demo.controller;
 
 import com.example.demo.model.Todo;
 import com.example.demo.service.TodoService;
@@ -20,7 +20,7 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(TodoApiController.class)
+@WebMvcTest(TodoController.class)
 class TodoApiControllerTests {
 
     @Autowired
@@ -32,7 +32,7 @@ class TodoApiControllerTests {
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
-        mockMvc = MockMvcBuilders.standaloneSetup(new TodoApiController(todoService)).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(new TodoController(todoService)).build();
     }
 
     @Test

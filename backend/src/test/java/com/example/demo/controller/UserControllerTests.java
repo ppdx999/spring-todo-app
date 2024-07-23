@@ -1,4 +1,4 @@
-package com.example.demo.controller.api;
+package com.example.demo.controller;
 
 import com.example.demo.model.User;
 import com.example.demo.service.UserService;
@@ -18,21 +18,21 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(UserApiController.class)
+@WebMvcTest(UserController.class)
 class UserApiControllerTests {
 
     @MockBean
     private UserService userService;
 
     @InjectMocks
-    private UserApiController userApiController;
+    private UserController userController;
 
     private MockMvc mockMvc;
 
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
-        mockMvc = MockMvcBuilders.standaloneSetup(userApiController).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
     }
 
     @Test

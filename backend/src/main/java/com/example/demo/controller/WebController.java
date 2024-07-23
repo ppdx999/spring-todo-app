@@ -1,11 +1,10 @@
-package com.example.demo.controller.web;
+package com.example.demo.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class RootWebController {
-
+public class WebController {
     @GetMapping("/")
     public String redirectToTodos() {
         return "index";

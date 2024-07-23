@@ -1,4 +1,4 @@
-package com.example.demo.controller.api;
+package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,8 +12,8 @@ import com.example.demo.service.TokenService;
 
 @RestController
 @RequestMapping("/api/auth")
-public class AuthApiController {
-    @Autowired
+public class AuthController {
+     @Autowired
     private TokenService tokenService;
 
     @PostMapping("/token")
