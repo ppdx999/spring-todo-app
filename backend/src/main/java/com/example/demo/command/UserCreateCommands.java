@@ -6,14 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserCommands implements Command {
+public class UserCreateCommands implements Command {
 
     @Autowired
     private UserService userService;
 
     public void run(String... args) throws Exception {
         if (args.length < 2) {
-            System.err.println("Usage: create-user <username> <password>");
+            System.err.println("Usage: user-create <username> <password>");
             return;
         }
         createUser(args[0], args[1]);

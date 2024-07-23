@@ -15,8 +15,8 @@ public class CommandManager {
 
         Command cmd = null;
         switch (cmdName) {
-            case "create-user":
-                cmd = context.getBean(UserCommands.class);
+            case "user-create":
+                cmd = context.getBean(UserCreateCommands.class);
                 break;
             default:
                 cmd = context.getBean(UnknownCommand.class);
