@@ -1,4 +1,5 @@
-import { api } from "./api"
+import { generateToken } from "./services/auth"
+import { listTodos } from "./services/todo"
 
 function App() {
   return (
@@ -7,26 +8,16 @@ function App() {
       <div className='text-center'>
         <button
           className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
-          onClick={() =>
-            api.POST('/api/auth/token', {
-              headers: {
-                Authorization: 'Basic ' + btoa('fujis:password'),
-              }
-            }).then(res => {
-              const token = res.data?.token
-              if (!token) {
-                console.warn('No token found in response')
-              }
+          onClick={() => {
+            generateToken('fujis', 'password')
+            .then(() => {
+              console.log('Token generated. Check the local storage to see the token')
 
-              return api.GET('/api/todos', {
-                headers: {
-                  Authorization: `Bearer ${token}`
-                }
-              })
-            }).then(res => {
-              console.log(res.data)
+              return listTodos()
+            }).then((todos) => {
+              console.log('Todos:', todos)
             })
-          }
+          }}
         >
           Run API request
         </button>
