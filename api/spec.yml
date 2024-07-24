@@ -9,7 +9,7 @@ paths:
   /api/users/{id}:
     get:
       tags:
-        - user-api-controller
+        - user-controller
       operationId: getUserById
       parameters:
         - name: id
@@ -27,7 +27,7 @@ paths:
                 $ref: '#/components/schemas/User'
     put:
       tags:
-        - user-api-controller
+        - user-controller
       operationId: updateUser
       parameters:
         - name: id
@@ -51,7 +51,7 @@ paths:
                 $ref: '#/components/schemas/User'
     delete:
       tags:
-        - user-api-controller
+        - user-controller
       operationId: deleteUser
       parameters:
         - name: id
@@ -66,7 +66,7 @@ paths:
   /api/todos/{id}:
     get:
       tags:
-        - todo-api-controller
+        - todo-controller
       operationId: getTodoById
       parameters:
         - name: id
@@ -84,7 +84,7 @@ paths:
                 $ref: '#/components/schemas/Todo'
     put:
       tags:
-        - todo-api-controller
+        - todo-controller
       operationId: updateTodo
       parameters:
         - name: id
@@ -108,7 +108,7 @@ paths:
                 $ref: '#/components/schemas/Todo'
     delete:
       tags:
-        - todo-api-controller
+        - todo-controller
       operationId: deleteTodo
       parameters:
         - name: id
@@ -123,7 +123,7 @@ paths:
   /api/users:
     get:
       tags:
-        - user-api-controller
+        - user-controller
       operationId: getAllUsers
       responses:
         "200":
@@ -136,7 +136,7 @@ paths:
                   $ref: '#/components/schemas/User'
     post:
       tags:
-        - user-api-controller
+        - user-controller
       operationId: createUser
       requestBody:
         content:
@@ -154,7 +154,7 @@ paths:
   /api/todos:
     get:
       tags:
-        - todo-api-controller
+        - todo-controller
       operationId: getAllTodos
       responses:
         "200":
@@ -167,7 +167,7 @@ paths:
                   $ref: '#/components/schemas/Todo'
     post:
       tags:
-        - todo-api-controller
+        - todo-controller
       operationId: createTodo
       requestBody:
         content:
@@ -185,7 +185,7 @@ paths:
   /api/auth/token:
     post:
       tags:
-        - auth-api-controller
+        - auth-controller
       operationId: generateToken
       responses:
         "200":
@@ -197,7 +197,7 @@ paths:
   /api/auth/check:
     get:
       tags:
-        - auth-api-controller
+        - auth-controller
       operationId: checkToken
       responses:
         "200":
