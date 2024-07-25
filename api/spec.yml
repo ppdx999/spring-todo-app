@@ -25,6 +25,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
+        "404":
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
     put:
       tags:
         - user-controller
@@ -49,6 +55,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
+        "404":
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
     delete:
       tags:
         - user-controller
@@ -61,8 +73,10 @@ paths:
             type: integer
             format: int64
       responses:
-        "200":
-          description: OK
+        "204":
+          description: User deleted
+        "404":
+          description: User not found
   /api/todos/{id}:
     get:
       tags:
@@ -78,6 +92,12 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Todo'
+        "404":
+          description: Todo not found
           content:
             application/json:
               schema:
@@ -106,6 +126,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Todo'
+        "404":
+          description: Todo not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Todo'
     delete:
       tags:
         - todo-controller
@@ -118,8 +144,10 @@ paths:
             type: integer
             format: int64
       responses:
-        "200":
-          description: OK
+        "204":
+          description: Todo deleted
+        "404":
+          description: Todo not found
   /api/users:
     get:
       tags:
@@ -151,6 +179,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
+  /api/auth/token:
+    post:
+      tags:
+        - auth-controller
+      operationId: generateToken
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
   /api/todos:
     get:
       tags:
@@ -165,35 +205,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Todo'
-    post:
-      tags:
-        - todo-controller
-      operationId: createTodo
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Todo'
-        required: true
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Todo'
-  /api/auth/token:
-    post:
-      tags:
-        - auth-controller
-      operationId: generateToken
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TokenResponse'
   /api/auth/check:
     get:
       tags:
